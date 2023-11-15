@@ -1,0 +1,93 @@
+@use "sass:math";
+
+@mixin gradient($start-color, $end-color, $orientation) {
+  background: $start-color;
+
+  @if $orientation==vertical {
+      // vertical
+      background: -moz-linear-gradient(top, $start-color 0%, $end-color 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $start-color), color-stop(100%, $end-color));
+      background: -webkit-linear-gradient(top, $start-color 0%, $end-color 100%);
+      background: -o-linear-gradient(top, $start-color 0%, $end-color 100%);
+      background: -ms-linear-gradient(top, $start-color 0%, $end-color 100%);
+      background: linear-gradient(to bottom, $start-color 0%, $end-color 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$start-color', endColorstr='$end-color', GradientType=0);
+  }
+
+  @else if $orientation==horizontal {
+      // horizontal
+      background: -moz-linear-gradient(left, $start-color 0%, $end-color 100%);
+      background: -webkit-gradient(linear, left top, right top, color-stop(0%, $start-color), color-stop(100%, $end-color));
+      background: -webkit-linear-gradient(left, $start-color 0%, $end-color 100%);
+      background: -o-linear-gradient(left, $start-color 0%, $end-color 100%);
+      background: -ms-linear-gradient(left, $start-color 0%, $end-color 100%);
+      background: linear-gradient(to right, $start-color 0%, $end-color 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$start-color', endColorstr='$end-color', GradientType=1);
+  }
+
+  @else {
+      // radial
+      background: -moz-radial-gradient(center, ellipse cover, $start-color 0%, $end-color 100%);
+      background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $start-color), color-stop(100%, $end-color));
+      background: -webkit-radial-gradient(center, ellipse cover, $start-color 0%, $end-color 100%);
+      background: -o-radial-gradient(center, ellipse cover, $start-color 0%, $end-color 100%);
+      background: -ms-radial-gradient(center, ellipse cover, $start-color 0%, $end-color 100%);
+      background: radial-gradient(ellipse at center, $start-color 0%, $end-color 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$start-color', endColorstr='$end-color', GradientType=1);
+  }
+}
+
+//縦縞ボーダー背景
+//@include stripes(to right, #80B9AA #FFFBD2 #FFD1B7 #FF8688 #7D5C68);
+@mixin stripes($direction, $colors) {
+  $length: length($colors);
+
+  @if $length>1 {
+      $stripes: ();
+
+      @for $i from 1 through $length {
+          $stripe: math.div(100% , $length) * ($i - 1);
+
+          @if $i>1 {
+              $previous-color: nth($colors, $i - 1);
+              $stripes: append($stripes, $previous-color $stripe, comma);
+          }
+
+          $stripes: append($stripes, nth($colors, $i) $stripe, comma);
+      }
+
+      background: linear-gradient($direction, $stripes) fixed;
+  }
+
+  @else if $length==1 {
+      background-color: $colors;
+  }
+}
+
+///CSSで三角形を作る
+@mixin triangle($color: #000, $width: 10px, $height: 10px, $dir: top) {
+  width: 0;
+  height: 0;
+
+  @if $dir=='top' {
+      border-width: 0 math.div($width,2) #{$height} math.div($width,2);
+      border-color: transparent transparent $color transparent;
+  }
+
+  @else if $dir=='bottom' {
+      border-width: #{$height}  math.div($width,2) 0  math.div($width,2);
+      border-color: $color transparent transparent transparent;
+  }
+
+  @else if $dir=='right' {
+      border-width:  math.div($height,2) 0 math.div($height,2) #{$width};
+      border-color: transparent transparent transparent $color;
+  }
+
+  @else {
+      border-width: math.div($height,2) #{$width} math.div($height,2) 0;
+      border-color: transparent $color transparent transparent;
+  }
+
+  border-style: solid;
+}

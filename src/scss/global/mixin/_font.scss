@@ -1,0 +1,83 @@
+@use "sass:math";
+
+@mixin gradient-text($angle: 45deg, $color: #f82, $amount: 35%) {
+  color: $color;
+  background: -webkit-linear-gradient($angle, $color, adjust-hue($color, $amount));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  display: inline-block;
+}
+
+@mixin fz($size) {
+  font-size: $size + px;
+  font-size: math.div($size , 16) + rem;
+}
+
+@function get_vw($size, $viewport:375) {
+  $rate: math.div(100 , $viewport);
+  @return $rate * $size * 1vw;
+}
+
+@mixin fz-vw($font_size:10) {
+  font-size: $font_size * 1px;
+  font-size: get_vw($font_size);
+}
+
+@mixin line-height-crop($line-height) {
+  &::before {
+      display: block;
+      width: 0;
+      height: 0;
+      margin-top: calc((1 - #{$line-height}) * .5em);
+      content: "";
+  }
+
+  &::after {
+      display: block;
+      width: 0;
+      height: 0;
+      margin-bottom: calc((1 - #{$line-height}) * .5em);
+      content: "";
+  }
+}
+
+@mixin link-color($color) {
+  color: $color;
+  &:hover,&:focus,
+  &:active,
+  &:focus {
+      color: lighten($color, 20%);
+  }
+}
+
+@mixin text-stroke($size: 2, $bg: #000) {
+  text-shadow: #{$size}px 0 0 #{$bg},
+  -#{$size}px 0 0 #{$bg},
+  0 -#{$size}px 0 #{$bg},
+  0 #{$size}px 0 #{$bg},
+  #{$size}px #{$size}px 0 #{$bg},
+  -#{$size}px #{$size}px 0 #{$bg},
+  #{$size}px -#{$size}px 0 #{$bg},
+  -#{$size}px -#{$size}px 0 #{$bg},
+  #{$size - 1}px #{$size}px 0 #{$bg},
+  -#{$size - 1}px #{$size}px 0 #{$bg},
+  #{$size - 1}px -#{$size}px 0 #{$bg},
+  -#{$size - 1}px -#{$size}px 0 #{$bg},
+  #{$size}px #{$size - 1}px 0 #{$bg},
+  -#{$size}px #{$size - 1}px 0 #{$bg},
+  #{$size}px -#{$size - 1}px 0 #{$bg},
+  -#{$size}px -#{$size - 1}px 0 #{$bg},
+  #{$size - 1}px #{$size - 1}px 0 #{$bg},
+  -#{$size - 1}px #{$size - 1}px 0 #{$bg},
+  #{$size - 1}px -#{$size - 1}px 0 #{$bg},
+  -#{$size - 1}px -#{$size - 1}px 0 #{$bg};
+}
+
+@mixin truncate($width: 100%) {
+  width: $width;
+  max-width: 100%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

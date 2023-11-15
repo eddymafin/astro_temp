@@ -1,0 +1,9 @@
+@use './mediaQuery' as *;
+
+@mixin cmn-container{
+  width: calc(345 / 375 * 100%);
+  margin: auto;
+  @include pc {
+    width: min(1200px,95%);
+  }
+}

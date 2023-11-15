@@ -1,0 +1,7 @@
+$jp: "Noto Sans JP", sans-serif;
+$font-awesome: "Font Awesome 5 Free";
+
+@mixin fontAwesome() {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}

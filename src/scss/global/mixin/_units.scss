@@ -1,0 +1,58 @@
+@use "sass:math";
+
+@function decimal-round($number, $digits: 0, $mode: round) {
+  $n: 1;
+
+  // $number must be a number
+  @if type-of($number) !=number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+
+  // $digits must be a unitless number
+  @if type-of($digits) !=number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+
+  @if $mode==round {
+    @return round($number * $n) / $n;
+  } @else if $mode==ceil {
+    @return ceil($number * $n) / $n;
+  } @else if $mode==floor {
+    @return floor($number * $n) / $n;
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+
+@function rem($pxValue) {
+  @return math.div($pxValue, 16) + rem;
+}
+
+@function px-per($px, $parent_width: 750) {
+  @return math.round(math.percentage(math.div($px, $parent_width)));
+  // @return decimal-round(percentage($px / $parent_width), 3);
+}
+
+@function vw($pxValue, $viewport: 380) {
+  @return math.div($pxValue, $viewport) * 100vw;
+}
+
+@function pcvw($pxValue) {
+  $viewport: 1366;
+  @return math.round(math.div($pxValue, $viewport) * 100) + vw;
+}
+
+@function lgvw($pxValue) {
+  $viewport: 1920;
+  @return math.round(math.div($pxValue, $viewport) * 100) + vw;
+}

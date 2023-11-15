@@ -1,0 +1,77 @@
+$xxl: 1400px;
+$xl: 1200px;
+$lg: 1024px;
+$ml: 768px;
+$sm: 560px;
+$xs: 375px;
+
+$pc: 960px; // PC
+$tab: 769px; // タブレット
+$sp: 768px; // SP
+
+@mixin xxl {
+  @media (min-width: ($xxl)) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: ($xl)) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: ($lg)) {
+    @content;
+  }
+}
+
+@mixin ml {
+  @media (min-width: ($ml)) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: ($sm)) {
+    @content;
+  }
+}
+
+@mixin xs {
+  @media (max-width: ($xs)) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media (min-width: ($pc)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (min-width: ($tab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @media (hover: hover) {
+    &:hover,
+    &:focus-visible {
+      @content;
+    }
+  }
+
+  &:active {
+    @content;
+  }
+}
