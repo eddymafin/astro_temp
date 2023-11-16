@@ -3,12 +3,7 @@
 // @use "vendor";
 @use "foundation";
 // @use "component";
-// @use "layout";
+@use "layout";
 // @use "project";
 // @use "javascript";
 // @use "utilities";
-
-h2 {
-  color: rebeccapurple;
-  font-size: 23px;
-}

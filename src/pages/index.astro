@@ -1,17 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+
+const name = "Mai"
+const year = 2024
+const obj = {
+	name: name,
+	year: year,
+}
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Welcome to My page">
 	<main>
-		<h2>テストおです</h2>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<h3>テキスト</h3>
+		<p>Hello!{name}</p>
+		<p>In {obj.year}, I wanna travel a lot</p>
 		<ul class="link-card-grid">
 			<Card
 				href="https://docs.astro.build/"

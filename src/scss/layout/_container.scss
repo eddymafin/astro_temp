@@ -1,0 +1,18 @@
+@use "../global/" as *;
+
+/* body */
+.l-container {
+  padding-top: 56px;
+  overflow: hidden;
+  @include pc {
+    padding-top: 62px;
+  }
+}
+
+.l-container__inner {
+  position: relative;
+  padding-top: 80px;
+  @include pc {
+    padding-top: 204px;
+  }
+}
