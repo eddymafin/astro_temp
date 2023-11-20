@@ -1,18 +1,11 @@
 @use "../global/" as *;
 
-/* body */
+/*共通コンテナー */
 .l-container {
-  padding-top: 56px;
-  overflow: hidden;
-  @include pc {
-    padding-top: 62px;
-  }
-}
+  width: calc(100% - 40px);
+  margin: 0 auto;
 
-.l-container__inner {
-  position: relative;
-  padding-top: 80px;
   @include pc {
-    padding-top: 204px;
+    max-width: 1200px;
   }
 }

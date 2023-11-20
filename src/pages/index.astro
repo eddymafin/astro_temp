@@ -1,27 +1,31 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "@layouts/Layout.astro";
+import Card from "@components/Card.astro";
 
-
-const name = "Mai"
-const year = 2024
+const name = "Mai";
+const year = 2024;
 const obj = {
-	name: name,
-	year: year,
-}
+  name: name,
+  year: year,
+  hobbies: ["watching movie", "hiking", "driving"],
+};
 ---
 
-<Layout title="Welcome to My page">
-	<main>
-		<p>Hello!{name}</p>
-		<p>In {obj.year}, I wanna travel a lot</p>
-		<ul class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-		</ul>
-	</main>
+<Layout>
+  <main>
+    <div class="l-container">
+			<p>Hello!{name}</p>
+			<p>In {obj.year}, I wanna travel a lot</p>
+			<ul>
+				{obj.hobbies.map((item) => <li>{item}</li>)}
+			</ul>
+			<ul class="link-card-grid">
+				<Card
+					href="https://docs.astro.build/"
+					title="Documentation"
+					body="Learn how Astro works and explore the official API docs."
+				/>
+			</ul>
+		</div>
+  </main>
 </Layout>
-
