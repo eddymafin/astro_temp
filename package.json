@@ -2,6 +2,9 @@
   "name": "astro-temp",
   "type": "module",
   "version": "0.0.1",
+  "browerslist": [
+    "default"
+  ],
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -11,6 +14,7 @@
   },
   "dependencies": {
     "astro": "^3.5.3",
+    "astro-icon": "^0.8.1",
     "postcss": "^8.4.31",
     "postcss-preset-env": "^9.3.0",
     "sass": "^1.69.5"

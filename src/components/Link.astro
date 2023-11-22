@@ -1,0 +1,31 @@
+---
+//Typescriptの書き方
+interface Props {
+  text: string;
+  href: string;
+  style: "primary" | "secondary";
+  icon?: {
+    name: string;
+    side: "left" | "right";
+  };
+  isFilled?: boolean;
+  borderVisible?: boolean;
+  classes?: string;
+
+}
+
+const { 
+  text,
+  href,
+  style,
+  icon,
+  isFilled = true,
+  borderVisible = true,
+  classes,
+  ...rest
+} = Astro.props as Props;
+
+
+---
+
+

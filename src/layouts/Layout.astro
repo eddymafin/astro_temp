@@ -1,16 +1,21 @@
 ---
 const { title= "My page", description= "this is about me" } = Astro.props;
-import "../scss/style.scss";
+// import "../scss/style.scss";
+import "/public/assets/css/style.css";
 import Head from "./Head.astro";
-
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
 <html lang="ja">
 <Head {title} {description} />
 	<body>
+		<Nav />
 		<div class="l-container">
 			<slot />
 		</div>
+
+		<Footer />
 	</body>
 </html>

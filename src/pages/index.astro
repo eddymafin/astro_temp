@@ -9,6 +9,11 @@ const obj = {
   year: year,
   hobbies: ["watching movie", "hiking", "driving"],
 };
+
+const backgroundColor = "beige";
+const textColor = "#333";
+
+const isLarge = true;
 ---
 
 <Layout>
@@ -26,6 +31,29 @@ const obj = {
 					body="Learn how Astro works and explore the official API docs."
 				/>
 			</ul>
+
+			<p style={{
+				backgroundColor: "pink",
+			}}>JSXで直書き</p>
+			<p>スタイル</p>
+
+			<p class:list={["c-paragraph", {"large-font": isLarge}]}>大きい文字です</p>
 		</div>
   </main>
 </Layout>
+
+<style define:vars={{ backgroundColor, textColor}}>
+	p {
+		font-size: 20px;
+		background-color: var(--backgroundColor);
+		color : var(--textColor);
+	}
+
+	.c-paragraph {
+		color: chocolate;
+	}
+
+	.large-font {
+	font-size: 5rem;
+	}
+</style>
